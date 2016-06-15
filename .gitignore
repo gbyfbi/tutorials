@@ -6,3 +6,6 @@ tr-berkeley*
 mnist.t7*
 
 coursera_neural_nets/assignment2/solution_torch_nn/test.lua
+/.buildpath
+/.project
+/.Rhistory
