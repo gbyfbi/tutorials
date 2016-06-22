@@ -9,3 +9,4 @@ coursera_neural_nets/assignment2/solution_torch_nn/test.lua
 /.buildpath
 /.project
 /.Rhistory
+/cifar10torchsmall.zip
