@@ -42,14 +42,14 @@ print '==> Preprocessing'
 print('ImageNet ', net.transform)
 local I = preprocess(im, net.transform):view(1,3,224,224):float()
 
---inputNode = net:get(1)()
---outputNode = net(inputNode)
---nodeGraph = nn.gModule({inputNode}, {outputNode})
---graph.dot(nodeGraph.fg, "forward imagenet")
+inputNode = net:get(1)()
+outputNode = net(inputNode)
+nodeGraph = nn.gModule({inputNode}, {outputNode})
+graph.dot(nodeGraph.fg, "forward imagenet")
 
 print 'Propagate through the network, sort outputs in decreasing order and show 5 best classes'
 local score,classes = net:forward(I):view(-1):sort(true)
-print (#net:get(net:size()-1).output)
+print (net:get(net:size()-1).output)
 for i=1,5 do
   print('predicted class '..tostring(i)..': ', synset_words[classes[i] ], score[i])
 end
