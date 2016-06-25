@@ -5,6 +5,7 @@ import numpy as np
 import lutorpy as lua
 # setup runtime and use zero-based index(optional, enabled by default)
 lua.LuaRuntime(zero_based_index=True)
+torch = lua.require("torch")
 
 blob = caffe.proto.caffe_pb2.BlobProto()
 in_binary_proto_path = "models/VGG_mean.binaryproto"
@@ -14,9 +15,10 @@ blob.ParseFromString(data)
 arr = np.array(caffe.io.blobproto_to_array(blob))
 out = arr[0]
 np.save(out_path, out)
-torch = require("torch")
 t = torch.DoubleTensor(11, 11)._fill(1)
 torch.save("test_save_from_python.t7", t)
 image_mean_torch_tensor = torch.fromNumpyArray(arr)
-torch.save("VGG_mean.t7", image_mean_torch_tensor)
+torch.save("models/VGG_mean.t7", image_mean_torch_tensor)
+np.save("models/VGG_mean.npy", arr)
+
 
