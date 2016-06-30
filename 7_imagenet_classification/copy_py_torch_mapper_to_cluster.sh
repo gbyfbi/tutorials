@@ -1,0 +1,2 @@
+scp classify_with_caffe_model_in_torch_mapper.py gao@cluster00:Hadoop/hduser/py_tor_mapper.py
+scp classify_with_caffe_model_in_torch_mapper.py gao@cluster01:Hadoop/hduser/py_tor_mapper.py

@@ -39,7 +39,8 @@ if not paths.filep(image_name) then os.execute('wget '..image_url)   end
 print '==> Loading network'
 --local net = torch.load(network_name):unpack():float()
 --local net = loadcaffe.load('models/VGG_CNN_M_2048_deploy.prototxt', 'models/VGG_CNN_M_2048.caffemodel', 'cudnn')
-local net = loadcaffe.load('models/VGG_CNN_S_deploy.prototxt', 'models/VGG_CNN_S.caffemodel', 'cudnn')
+--local net = loadcaffe.load('models/VGG_CNN_S_deploy.prototxt', 'models/VGG_CNN_S.caffemodel', 'cudnn')
+local net = loadcaffe.load('models/VGG_CNN_S_deploy.prototxt', 'models/VGG_CNN_S.caffemodel', 'nn'):float()
 net:evaluate();  --This sets the mode of the Module (or sub-modules) to train=false. This is useful for modules like Dropout that have a different behaviour during training vs evaluation.
 print(net)
 image_mean = torch.load("models/VGG_mean.t7")
@@ -62,7 +63,8 @@ local I = preprocess(im, image_mean):view(1,3,imageHeight,imageWidth):float()
 --graph.dot(nodeGraph.fg, "forward imagenet")
 
 print 'Propagate through the network, sort outputs in decreasing order and show 5 best classes'
-local score,classes = net:forward(I:cuda()):view(-1):sort(true)
+--local score,classes = net:forward(I:cuda()):view(-1):sort(true)
+local score,classes = net:forward(I):view(-1):sort(true)
 print (net:get(net:size()-1).output)
 for i=1,10 do
   print('predicted class '..tostring(i)..': ', synset_words[classes[i] ], score[i])

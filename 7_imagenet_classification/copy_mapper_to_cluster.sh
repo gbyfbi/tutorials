@@ -1,0 +1,5 @@
+scp classify_with_VGG_imagenet_caffe_model_mapper.lua gao@cluster00:Hadoop/hduser/mapper.lua
+scp classify_with_VGG_imagenet_caffe_model_reducer.lua gao@cluster00:Hadoop/hduser/reducer.lua
+scp classify_with_VGG_imagenet_caffe_model_mapper.lua gao@cluster01:Hadoop/hduser/mapper.lua
+scp classify_with_VGG_imagenet_caffe_model_reducer.lua gao@cluster01:Hadoop/hduser/reducer.lua
+#scp classify_with_VGG_imagenet_caffe_model_mapper.lua gao@cluster00:Hadoop/hduser/mapper.lua
